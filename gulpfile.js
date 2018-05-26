@@ -3,11 +3,9 @@ const gulp = require('gulp')
 const sass = require('gulp-sass')
 const sassGlob = require('gulp-sass-glob')
 const path = require('path')
-const fileinclude = require('gulp-file-include')
 const flatten = require('gulp-flatten')
 const reactRender = require('gulp-render-react')
 const autoprefixer = require('gulp-autoprefixer')
-const plumber = require('gulp-plumber')
 const sourcemaps = require('gulp-sourcemaps')
 const gls = require('gulp-live-server')
 
@@ -66,8 +64,6 @@ gulp.task('copy-assets', function () {
 gulp.task('serve', function() {
   var server = gls.static('public', 3000)
   server.start()
-  
-  // use gulp.watch to trigger server actions(notify, start or stop)
   gulp
     .watch(['public/**/*.css', 'public/*.html'], function(file) {
       server.notify(file).on('error', onError)

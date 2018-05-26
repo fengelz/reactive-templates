@@ -5,5 +5,3 @@ coverage
 dist
 public
 /.yarnclean
-/dmi.sublime-project
-/dmi.sublime-workspace
