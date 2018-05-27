@@ -8,6 +8,7 @@ const reactRender = require('gulp-render-react')
 const autoprefixer = require('gulp-autoprefixer')
 const sourcemaps = require('gulp-sourcemaps')
 const gls = require('gulp-live-server')
+const plumber = require('gulp-plumber')
 
 gulp.task('default', [
   'build-html',
@@ -26,15 +27,14 @@ const paths = {
 
 gulp.task('build-public', ['build-html', 'build-sass', 'copy-assets'])
 
-gulp.task('build-html', function () {
+gulp.task('build-html', () => {
   gulp.src(paths.components + 'pages/**/*.js')
     .pipe(reactRender({type: 'markup'}))
     .pipe(flatten())
     .pipe(gulp.dest(paths.public))
 })
 
-gulp.task('build-sass', function() {
-  console.log('output', paths.scss + '/styles.scss')
+gulp.task('build-sass', () => {
   return gulp
     .src(paths.scss + '/styles.scss')
     .pipe(sassGlob())
@@ -55,13 +55,12 @@ gulp.task('build-sass', function() {
     .pipe(gulp.dest(paths.public + '/assets/css/'))
 })
 
-
-gulp.task('copy-assets', function () {
+gulp.task('copy-assets', () => {
   gulp.src([ paths.assets + '**/*' ])
     .pipe(gulp.dest('./public/assets/'))
 })
 
-gulp.task('serve', function() {
+gulp.task('serve', () => {
   var server = gls.static('public', 3000)
   server.start()
   gulp
