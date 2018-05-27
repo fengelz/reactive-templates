@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Body(props) {
+function Head(props) {
   return (
     <head>
       <title>{ props.title || 'Template title'}</title>
@@ -18,5 +18,5 @@ function Body(props) {
   )
 }
 
-export default Body
+export default Head
 
