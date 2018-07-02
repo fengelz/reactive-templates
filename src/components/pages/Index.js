@@ -3,7 +3,7 @@ import MasterPage from '../organisms/MasterPage'
 import Header from '../organisms/Header'
 import renderHTML from 'react-render-html'
 
-function Index(props) {
+export default function (props) {
   return (
     <MasterPage title={'Front page'} >
         <Header headerText='Html5BP' />
@@ -19,5 +19,3 @@ function Index(props) {
     </MasterPage>
   )
 }
-
-export default Index

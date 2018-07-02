@@ -2,7 +2,7 @@ import React from 'react'
 import MasterPage from '../organisms/MasterPage'
 import Header from '../organisms/Header'
 
-function FrontPage(props) {
+export default function (props) {
   return (
     <MasterPage title={'Page Not Found'} className='404'>
       <Header headerText='Html5BP' />
@@ -13,5 +13,3 @@ function FrontPage(props) {
     </MasterPage>
   )
 }
-
-export default FrontPage
