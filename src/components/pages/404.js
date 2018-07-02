@@ -4,11 +4,11 @@ import Header from '../organisms/Header'
 
 function FrontPage(props) {
   return (
-    <MasterPage title={'Front page'}>
-      <Header title='My Header title' />
+    <MasterPage title={'Page Not Found'} className='404'>
+      <Header headerText='Html5BP' />
       <main>
-        <h1>Hi! My name is...</h1>
-        <h2>Slam shotty !!</h2>
+        <h1>Page Not Found</h1>
+        <p>Sorry, but the page you were trying to view does not exist.</p>
       </main>
     </MasterPage>
   )

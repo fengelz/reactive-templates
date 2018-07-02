@@ -8,7 +8,6 @@ const reactRender = require('gulp-render-react')
 const autoprefixer = require('gulp-autoprefixer')
 const sourcemaps = require('gulp-sourcemaps')
 const gls = require('gulp-live-server')
-const plumber = require('gulp-plumber')
 
 gulp.task('default', [
   'build-html',

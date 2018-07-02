@@ -7,7 +7,7 @@ function MastePage(props) {
   return (
     <Html>
         <Head title={props.title} />
-        <Body>
+        <Body className={props.className || ''}>
           { props.children }
         </Body>
     </Html>
