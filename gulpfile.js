@@ -8,6 +8,7 @@ const reactRender = require('gulp-render-react')
 const autoprefixer = require('gulp-autoprefixer')
 const sourcemaps = require('gulp-sourcemaps')
 const gls = require('gulp-live-server')
+var replace = require('gulp-replace')
 
 gulp.task('default', [
   'build-html',
@@ -30,6 +31,10 @@ gulp.task('build-html', () => {
   gulp.src(paths.components + 'pages/**/*.js')
     .pipe(reactRender({type: 'markup'}))
     .pipe(flatten())
+    .pipe(replace('&lt;!--', '<!--'))
+    .pipe(replace('--&gt;', '-->'))
+    .pipe(replace('&lt;![', '<!['))
+    .pipe(replace(']&gt;', ']>'))
     .pipe(gulp.dest(paths.public))
 })
 
