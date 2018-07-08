@@ -10,6 +10,7 @@ import htmlbeautify from 'gulp-html-beautify'
 import gls from 'gulp-live-server'
 import replace from 'gulp-replace'
 import inject from 'gulp-inject'
+import insert from 'gulp-insert'
 
 const paths = {
   components: 'src/components/',
@@ -31,6 +32,7 @@ export const buildHtml = () => {
     .pipe(replace('&lt;![', '<!['))
     .pipe(replace(']&gt;', ']>'))
     .pipe(replace('&lt;?', '<?'))
+    .pipe(insert.prepend('<!doctype html>'))
     .pipe(htmlbeautify({indentSize: 2}))
     .pipe(dest(paths.public))
 }

@@ -2,7 +2,7 @@ import React from 'react'
 
 function Html(props) {
   return (
-    <html>
+    <html lang="en">
         {props.children}
     </html>
   )
