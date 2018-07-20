@@ -65,18 +65,25 @@ export const copyAssets = () => {
 export const serve = () => {
   const server = gls.static('public', 3000)
   server.start()
-  watchSrc(['public/**/*.css', 'public/*.html'], (file) => {
-    server.notify(file).on('error', onError)
-  })
-  .on('error', onError)
+  watchSrc('public/**/*')
+  .on('change', path => server.notify.call(server, { path }))
 }
 
-export const watch = () => {
-  watchSrc(paths.scss + '**/*.scss', buildSass)
-  watchSrc(paths.components + '**/*.scss', buildSass)
-  watchSrc(paths.components + '**/*.js', buildHtml)
-  watchSrc(paths.assets + '**/*.*', {cwd: './'}, copyAssets)
+const watchStyles = () => {
+  return watchSrc(paths.scss + '**/*.scss', buildSass)  
 }
+const watchComponentStyles = () => {
+  return watchSrc(paths.components + '**/*.scss', buildSass)
+}
+const watchJs = () => {
+  return watchSrc(paths.components + '**/*.js', series(buildHtml, injectScripts))
+}
+const watchAssets = () => {
+  return watchSrc(paths.assets + '**/*.*', {cwd: './'}, copyAssets)
+}
+
+const watchAll = parallel(watchStyles, watchComponentStyles, watchJs, watchAssets)
+watchAll.description = 'watch for changes to all source'
 
 export const injectScripts = () => {
   const sources = src([paths.public + 'assets/**/*.js', paths.public + 'assets/**/*.css'], {read: false});
@@ -95,7 +102,7 @@ function onError(error) {
 
 export const parallelTasks = parallel(buildHtml, buildSass, copyAssets)
 
-export const runningTasks = parallel(watch, serve)
+export const runningTasks = parallel(watchAll, serve)
 
 export const build = series(clean, parallelTasks, injectScripts, runningTasks)
 
