@@ -1,7 +1,6 @@
 import React from 'react'
 import MasterPage from '../organisms/MasterPage'
 import Header from '../organisms/Header'
-import renderHTML from 'react-render-html'
 
 export default function (props) {
   return (

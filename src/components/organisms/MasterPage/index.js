@@ -3,7 +3,7 @@ import Html from '../../atoms/Html'
 import Head from '../../atoms/Head'
 import Body from '../../atoms/Body'
 
-function MastePage(props) {
+function MasterPage(props) {
   return (
     <Html>
         <Head title={props.title} />
@@ -14,4 +14,4 @@ function MastePage(props) {
   )
 }
 
-export default MastePage
+export default MasterPage
